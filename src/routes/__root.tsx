@@ -17,6 +17,7 @@ import { useRouterState } from "@tanstack/react-router";
 import { Toaster } from "@/components/ui/sonner";
 import { applyContent } from "@/lib/cms";
 import { getSiteContent } from "@/lib/cms.functions";
+import type { SiteContent } from "@/lib/cms";
 import { preloadSiteImages } from "@/lib/preload-images";
 
 function NotFoundComponent() {
@@ -102,7 +103,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
     ],
   }),
-  loader: () => getSiteContent(),
+  // A dropped connection (e.g. while the preview reloads) must not blank the site: fall back to built-in content.
+  loader: () => getSiteContent().catch((): SiteContent => ({})),
   staleTime: 5 * 60_000,
   shouldReload: false,
   shellComponent: RootShell,
