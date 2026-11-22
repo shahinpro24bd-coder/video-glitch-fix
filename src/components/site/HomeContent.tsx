@@ -211,7 +211,6 @@ export function HomeContent() {
           </ul>
         </div>
       </section>
-      <div className="pb-5"></div>
 
 
       {/* About — clean, futuristic layout: HUD-framed video, spec-style feature grid */}
@@ -260,12 +259,12 @@ export function HomeContent() {
               </div>
             </div>
             <div className="col-lg-6 abm-copy">
-              <div className="abm-kicker rv" style={{ ["--d" as string]: "100ms" }}><span className="abm-kicker-idx" aria-hidden="true">01</span><span className="abm-kicker-line" aria-hidden="true" /><span><T k="home.about.kicker" d="About QMEP" line /></span></div>
+              <div className="abm-kicker rv" style={{ ["--d" as string]: "100ms" }}><span className="abm-kicker-line" aria-hidden="true" /><span><T k="home.about.kicker" d="About QMEP" line /></span></div>
               <h2 className={`abm-title ${edit ? "" : "abm-title-split"}`}>
                 {edit ? <T k="home.about.title" d={aboutTitle} /> : (() => {
                   const w = get("home.about.title", aboutTitle).trim().split(/\s+/);
                   return w.map((word, wi) => (
-                    <span key={wi}><span className="abm-w"><span className={wi === w.length - 1 ? "abm-accent" : undefined} style={{ ["--i" as string]: wi }}>{word}</span></span>{wi < w.length - 1 ? " " : ""}</span>
+                    <span key={wi}><span className="abm-w"><span style={{ ["--i" as string]: wi }}>{word}</span></span>{wi < w.length - 1 ? " " : ""}</span>
                   ));
                 })()}
               </h2>
@@ -279,7 +278,7 @@ export function HomeContent() {
                   { icon: "fa-clipboard-check", text: "Rigorous Quality Control" },
                 ].map((f, fi) => (
                   <li key={f.text} className="rv" style={{ ["--d" as string]: `${460 + fi * 80}ms` }}>
-                    <div className="abm-spec"><span className="abm-spec-ico" aria-hidden="true"><i className={`fa ${f.icon}`}></i></span><span className="abm-spec-text"><T k={`home.about.f${fi}`} d={f.text} /></span><span className="abm-spec-num" aria-hidden="true">0{fi + 1}</span></div>
+                    <div className="abm-spec"><span className="abm-spec-ico" aria-hidden="true"><i className={`fa ${f.icon}`}></i></span><span className="abm-spec-text"><T k={`home.about.f${fi}`} d={f.text} /></span></div>
                   </li>
                 ))}
               </ul>

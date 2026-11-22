@@ -9,8 +9,8 @@ import { SiteVideo } from "@/components/site/SiteVideo";
 import { company, faqs, processSteps, services, whyUs } from "@/lib/site";
 import about1Asset from "@/assets/about-1.webp.asset.json";
 const about1 = about1Asset.url;
-import about2Asset from "@/assets/about-2.webp.asset.json";
-const about2 = about2Asset.url;
+import whySubAsset from "@/assets/why-sub.webp.asset.json";
+const whySub = whySubAsset.url;
 import { T, Img, useEditable } from "@/lib/editable";
 
 export function ServicesGrid() {
@@ -222,7 +222,7 @@ export function WhyUs() {
                   </div>
                 </div>
                 <div className="wcx-sub-wrap wcx-rv" style={{ ["--d" as string]: "400ms" }}>
-                  <Img k="why.img2" d={about2} className="wcx-sub" alt="QMEP technician on site" />
+                  <Img k="why.img2" d={whySub} className="wcx-sub" alt="QMEP technician on site" />
                 </div>
                 <a className="wcx-call wcx-rv" style={{ ["--d" as string]: "550ms" }} href={company.phoneHref}>
                   <span className="wcx-call-icon"><span className="wcx-call-pulse" aria-hidden="true" /><i className="fa fa-phone-alt"></i></span>

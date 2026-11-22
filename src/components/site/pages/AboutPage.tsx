@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import hero1Asset from "@/assets/hero-1.webp.asset.json";
 import about1Asset from "@/assets/about-1.webp.asset.json";
 import about2Asset from "@/assets/about-2.webp.asset.json";
+import aboutDetailAsset from "@/assets/about-detail.webp.asset.json";
 import buildingsAsset from "@/assets/buildings.webp.asset.json";
 import hvacImgAsset from "@/assets/service-hvac.webp.asset.json";
 import elecImgAsset from "@/assets/service-electrical.webp.asset.json";
@@ -57,7 +58,7 @@ export function AboutPage() {
                 <span className="why-tick why-tick-tl rx-pop" style={dl(600)} aria-hidden="true" />
                 <span className="why-tick why-tick-tr rx-pop" style={dl(700)} aria-hidden="true" />
                 <Img k="about.img1" d={about1} className="ab-img-main rx-clip" style={dl(0)} alt="MEP engineer on a Dubai project" />
-                <Img k="about.img2" d={about2} className="ab-img-sub rx-zoom" style={dl(500)} alt="QMEP technician at work" />
+                <Img k="about.img2" d={aboutDetailAsset.url} className="ab-img-sub rx-zoom" style={dl(500)} alt="QMEP technician at work" />
                 <span className="ab-vert ab-vert-rx" aria-hidden="true">QMEP · Dubai · UAE</span>
               </div>
             </div>
