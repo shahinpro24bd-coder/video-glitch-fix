@@ -15,6 +15,7 @@
 - [x] Client video 3: projects page cards look too similar — vary them
 - [x] Client video 4: swap Contact and More positions in the navbar
 - [x] Client video 5: add Careers page in navigation, footer, and page editor
+- [x] Video 6: remove the "20 Years of Excellence" emblem from the home hero video corner (keep in navbar logo)
 - [ ] Client video 4: replace project photos with actual project photos once provided
 - [ ] Client contents text — user will send it next time
 - [ ] Mobile view adjustments — client will discuss later

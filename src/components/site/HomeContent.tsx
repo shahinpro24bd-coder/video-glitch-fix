@@ -16,7 +16,6 @@ import heroVideoAsset from "@/assets/hero-team-hd.mp4.asset.json";
 import heroVideoAv1Asset from "@/assets/hero-team-hd.av1.mp4.asset.json";
 import heroVideoMobileAsset from "@/assets/hero-team-mobile.mp4.asset.json";
 import heroPosterAsset from "@/assets/hero-services-hd-poster.webp.asset.json";
-import heroSealAsset from "@/assets/qmep-20-years-emblem.png.asset.json";
 import aboutVideoAsset from "@/assets/about-electromechanical-hd.mp4.asset.json";
 import aboutPosterAsset from "@/assets/about-electromechanical-hd-poster.webp.asset.json";
 import legacyAboutVideo from "@/assets/legacy/about-electromechanical.mp4.asset.json";
@@ -171,11 +170,6 @@ export function HomeContent() {
           <SiteVideo priority className="hx-video" mp4={heroVideoAsset.url} av1={heroVideoAv1Asset.url} mobile={heroVideoMobileAsset.url} poster={heroPosterAsset.url} />
           <div className="hx-shade" aria-hidden="true" />
           <div className="hx-grid" aria-hidden="true" />
-
-          {/* Anniversary seal — the logo's "20 Years of Excellence" mark, pinned to the top-right corner of the slide */}
-          <div className="hx-seal hx-in" style={{ ["--d" as string]: "560ms" }}>
-            <img src={heroSealAsset.url} alt="20 Years of Excellence" width={226} height={185} decoding="async" />
-          </div>
 
           <div className="hx-body">
             <HeroTitle edit={edit} />

@@ -1172,10 +1172,6 @@ small, .small { color: #5A6472; }
 
 .hx-body { position: relative; z-index: 3; flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
   max-width: 760px; padding: clamp(3rem, 9vh, 6rem) 0 clamp(2rem, 5vh, 3.5rem); }
-/* Anniversary seal: the logo's "20 Years of Excellence" mark, transparent, pinned to the slide's top-right corner */
-.hx-seal { position: absolute; z-index: 4; top: clamp(1.25rem, 3vw, 2.25rem); right: clamp(1.25rem, 3vw, 2.25rem); width: clamp(132px, 11vw, 178px); pointer-events: none; }
-.hx-seal img { display: block; width: 100%; height: auto; filter: drop-shadow(0 10px 22px rgba(0,0,0,.55)); }
-
 .hx-title { margin: 0; color: #FFFFFF; font-family: var(--hx-sans); font-weight: 800; font-size: clamp(2.6rem, 5.4vw, 5.1rem); line-height: 1.02; letter-spacing: -.035em; text-transform: none; }
 .hx-line { display: block; overflow: hidden; padding: .04em 0 .1em; }
 .hx-line > span { display: inline-block; animation: hxRise 1.05s cubic-bezier(.2,.8,.2,1) both; animation-delay: calc(var(--d, 0ms) * var(--rv-pace)); }
@@ -1239,8 +1235,6 @@ small, .small { color: #5A6472; }
 @media (max-width: 575.98px) {
   .hx-card { border-radius: 22px; padding: 1rem 1rem 1rem; }
   .hx-body { padding: 2.5rem 0 1.75rem; }
-  .hx-body { padding-top: 6.75rem; }
-  .hx-seal { top: 1rem; right: 1rem; width: 104px; }
   .hx-title { font-size: clamp(2.2rem, 10.5vw, 2.9rem); }
   .hx-sub { font-size: .95rem; margin: 1.1rem 0 1.6rem; }
   .hx-sub-item:not(.hx-sub-last)::after { margin: 0 .6rem; }
