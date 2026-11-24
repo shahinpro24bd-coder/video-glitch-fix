@@ -62,7 +62,9 @@ export function applyContent(c: SiteContent | null | undefined) {
   for (const s of services) {
     const base = defaults.services.find((d) => d.slug === s.slug)!;
     const saved = activeServices?.find((d) => d.slug === s.slug);
-    Object.assign(s, base, saved ? { ...saved, image: saved.image && !saved.image.startsWith("/assets/") ? saved.image : base.image, items: saved.items?.length ? saved.items : base.items } : {});
+    const img = saved?.image;
+    const usableImg = img && !img.startsWith("/assets/") && !img.includes("id-preview--") && !(base.image.startsWith("/media/") && img.startsWith("/__l5e/"));
+    Object.assign(s, base, saved ? { ...saved, image: usableImg ? img : base.image, items: saved.items?.length ? saved.items : base.items } : {});
   }
   faqs.splice(0, faqs.length, ...(savedFaqs(c?.faqs) ?? defaults.faqs));
   setPageTexts(savedTexts(c?.texts));

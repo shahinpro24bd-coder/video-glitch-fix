@@ -38,8 +38,10 @@ export function T({ k, d, line }: { k?: string | undefined; d: string; line?: bo
 /** Image that can be clicked to replace in the admin page editor. */
 export function Img({ k, d, className, ...rest }: { k: string; d: string } & ImgHTMLAttributes<HTMLImageElement>) {
   const c = useEditable();
+  const saved = c.get(k, d);
+  const usable = saved && !saved.startsWith("/assets/") && !saved.includes("id-preview--") && !(d.startsWith("/media/") && saved.startsWith("/__l5e/"));
   return (
-    <img {...rest} src={((v) => (v && !v.startsWith("/assets/") ? v : d))(c.get(k, d))}
+    <img {...rest} src={usable ? saved : d}
       className={c.edit ? `${className ?? ""} cms-img` : className}
       title={c.edit ? "Click to change image" : rest.title}
       onClick={c.edit ? (e) => { e.preventDefault(); e.stopPropagation(); c.pick(k); } : rest.onClick} />

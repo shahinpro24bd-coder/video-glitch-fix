@@ -7,24 +7,54 @@
 // the build fails. Never add compression (compressPublicAssets, vite-plugin-compression):
 // hosting already compresses at the edge.
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 import type { Plugin } from "vite";
 
-// Site media lives on Lovable's CDN behind the relative path /__l5e/assets-v1/…, which only
-// Lovable hosting serves. When the site is built anywhere else (Vercel, Netlify, own server),
-// rewrite each *.asset.json pointer's url to an absolute URL on the Lovable host so photos and
-// videos still load. Override the host with MEDIA_ORIGIN if needed.
-const MEDIA_ORIGIN = (process.env["MEDIA_ORIGIN"] || "https://id-preview--9237f315-89c9-41e2-90f2-c94a21983e05.lovable.app").replace(/\/+$/, "");
-const onLovable = process.env["LOVABLE_SANDBOX"] === "1" || !!process.env["SANDBOX"];
+// Site media lives on Lovable's CDN behind /__l5e/assets-v1/… (which only Lovable hosting serves;
+// preview hosts return 401 to public visitors). Outside Lovable (Vercel, Netlify, own server),
+// rewrite each active *.asset.json pointer to the matching static file in public/media/ (or
+// prepend MEDIA_ORIGIN when explicitly set).
+const MEDIA_ORIGIN = (process.env["MEDIA_ORIGIN"] || "").replace(/\/+$/, "");
+const onLovable =
+  process.env["LOVABLE_SANDBOX"] === "1" ||
+  !!process.env["SANDBOX"] ||
+  !!process.env["DEV_SERVER__PROJECT_PATH"];
+const publicMediaDir = join(process.cwd(), "public", "media");
 
-function absoluteMediaUrls(): Plugin {
+export function resolveExternalMediaUrl(
+  data: { url?: string; original_filename?: string },
+  id: string,
+  opts: { onLovable?: boolean; mediaOrigin?: string; hasLocalMedia?: (name: string) => boolean } = {},
+): string | undefined {
+  if (opts.onLovable ?? onLovable) return data.url;
+  const cleanId = id.split("?")[0] ?? "";
+  if (!cleanId.endsWith(".asset.json") || cleanId.includes("/legacy/") || cleanId.includes("\\legacy\\")) {
+    return data.url;
+  }
+  const origin = (opts.mediaOrigin ?? MEDIA_ORIGIN).replace(/\/+$/, "");
+  if (origin && typeof data.url === "string" && data.url.startsWith("/")) {
+    return origin + data.url;
+  }
+  const filename = data.original_filename;
+  const hasLocal = opts.hasLocalMedia ?? ((name: string) => existsSync(join(publicMediaDir, name)));
+  if (typeof filename === "string" && filename && hasLocal(filename)) {
+    return `/media/${filename}`;
+  }
+  return data.url;
+}
+
+function externalMediaUrls(): Plugin {
   return {
     name: "qmep:absolute-media-urls",
     enforce: "pre",
     transform(code, id) {
-      if (onLovable || !id.split("?")[0]!.endsWith(".asset.json")) return null;
-      const data = JSON.parse(code) as { url?: string };
-      if (typeof data.url === "string" && data.url.startsWith("/")) data.url = MEDIA_ORIGIN + data.url;
+      if (onLovable || !(id.split("?")[0] ?? "").endsWith(".asset.json")) return null;
+      const data = JSON.parse(code) as { url?: string; original_filename?: string };
+      const nextUrl = resolveExternalMediaUrl(data, id);
+      if (!nextUrl || nextUrl === data.url) return null;
+      data.url = nextUrl;
       return { code: JSON.stringify(data), map: null };
     },
   };
@@ -37,6 +67,6 @@ export default defineConfig({
     server: { entry: "server" },
   },
   vite: {
-    plugins: [absoluteMediaUrls()],
+    plugins: [externalMediaUrls()],
   },
 });
