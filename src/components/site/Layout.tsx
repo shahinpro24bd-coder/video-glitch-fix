@@ -278,7 +278,7 @@ export function Footer() {
         <div className="row g-5">
           <div className="col-lg-3 col-md-6 ft-in" style={dl(0)}>
             <h3 className="text-light mb-4 ft-h" style={dl(0)}><T k="footer.brand" d="QMEP Electromechanical" line /></h3>
-            <p><T k="footer.about" d="Established in 2007, QMEP delivers integrated mechanical, electrical, plumbing and interior solutions for construction projects across the UAE. Where Quality Meets Speed." /></p>
+            <p><T k="footer.about" d="Established in 2007 (Dubai DED License No. 597867 · DCCI No. 121391), QMEP Electromechanical and Interior Works LLC delivers turnkey MEP and interior fit-out solutions across the UAE. Where Quality Meets Speed." /></p>
             <div className="d-flex pt-2">
               {[
                 { href: company.whatsappHref, icon: "fa-whatsapp", label: "WhatsApp", ext: true },
@@ -308,8 +308,8 @@ export function Footer() {
             <h3 className="text-light mb-4 ft-h" style={dl(300)}><T k="footer.contactTitle" d="Contact" line /></h3>
             {[
               { icon: "fa fa-map-marker-alt", text: company.address },
-              { icon: "fa fa-phone-alt", text: company.phone },
-              { icon: "fab fa-whatsapp", text: "WhatsApp Us" },
+              { icon: "fa fa-phone-alt", text: `${company.phone} (Office)` },
+              { icon: "fab fa-whatsapp", text: `${company.mobile} (Mobile / WhatsApp)` },
               { icon: "fa fa-envelope", text: company.email },
             ].map((x) => (
               <p key={x.icon} className="mb-2 ft-contact"><i className={`${x.icon} text-primary me-3`}></i>{x.text}</p>
@@ -323,7 +323,7 @@ export function Footer() {
             <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
               &copy; {new Date().getFullYear()} <Link to="/">QMEP Electromechanical and Interior Works LLC</Link>. All Rights Reserved.
             </div>
-            <div className="col-md-6 text-center text-md-end"><T k="footer.location" d="Dubai, United Arab Emirates" line /></div>
+            <div className="col-md-6 text-center text-md-end"><T k="footer.location" d="DED License No. 597867 · Deira, Dubai, UAE" line /></div>
           </div>
         </div>
       </div>

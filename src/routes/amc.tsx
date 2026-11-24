@@ -4,10 +4,12 @@ import { AmcPage } from "@/components/site/pages/AmcPage";
 export const Route = createFileRoute("/amc")({
   head: () => ({
     meta: [
-      { title: "AMC Packages | Annual Maintenance Contracts Dubai | QMEP" },
-      { name: "description", content: "Residential, commercial and comprehensive MEP Annual Maintenance Contracts from QMEP Electromechanical and Interior Works LLC." },
-      { property: "og:title", content: "Annual Maintenance Contracts | QMEP" },
-      { property: "og:description", content: "Planned maintenance for long-term property care." },
+      { title: "DLP, O&M & AMC Packages | QMEP Electromechanical Works LLC" },
+      { name: "description", content: "Defects Liability Period (DLP) support, preventive and corrective Operation & Maintenance (O&M) and tailored Annual Maintenance Contracts (AMC) in Dubai and across the UAE." },
+      { property: "og:title", content: "DLP, O&M & Annual Maintenance Contracts | QMEP" },
+      { property: "og:description", content: "Tailored maintenance programmes ensuring reliability, safety, efficiency and longevity of building services." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Amc,

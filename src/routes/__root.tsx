@@ -81,8 +81,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "QMEP | MEP Contractor in the UAE | Where Quality Meets Speed" },
-      { name: "description", content: "QMEP Electromechanical and Interior Works LLC — established 2007, delivering mechanical, electrical, plumbing and interior works across the UAE." },
+      { title: "QMEP Electromechanical and Interior Works LLC | Where Quality Meets Speed" },
+      { name: "description", content: "Established in 2007 in Dubai (DED License No. 597867), QMEP delivers turnkey MEP, Fire & Life Safety, ELV/BMS and Interior Fit-Out solutions across the UAE." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

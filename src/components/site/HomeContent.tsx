@@ -1,17 +1,12 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import about1Asset from "@/assets/about-1.webp.asset.json";
-const about1 = about1Asset.url;
-import about2Asset from "@/assets/about-2.webp.asset.json";
-const about2 = about2Asset.url;
-import buildingsAsset from "@/assets/buildings.webp.asset.json";
-const buildings = buildingsAsset.url;
-import { company, services } from "@/lib/site";
+import yabaSiteAsset from "@/assets/project-yaba-arzaz-site.webp.asset.json";
+import dubaiHospitalAsset from "@/assets/project-dubai-hospital.webp.asset.json";
+import heritageVillageAsset from "@/assets/project-heritage-village.webp.asset.json";
+import alWarqaAsset from "@/assets/project-al-warqa-g9.webp.asset.json";
+import sushiWamaAsset from "@/assets/project-sushiwama.webp.asset.json";
+import { selectedProjects } from "@/lib/projects";
 import { CtaBanner, Faq, Kicker, Process, QuoteSection, ServicesGrid, SplitTitle, WhoWeServe, WhyUs, useInView, REVEAL_MARGIN } from "@/components/site/Sections";
-import amcImgAsset from "@/assets/service-amc.webp.asset.json";
-const amcImg = amcImgAsset.url;
-import maintImgAsset from "@/assets/service-maintenance.webp.asset.json";
-const maintImg = maintImgAsset.url;
 import heroVideoAsset from "@/assets/hero-team-hd.mp4.asset.json";
 import heroVideoAv1Asset from "@/assets/hero-team-hd.av1.mp4.asset.json";
 import heroVideoMobileAsset from "@/assets/hero-team-mobile.mp4.asset.json";
@@ -33,31 +28,32 @@ const ABM_ROWS = [{ r: 1, t: "7s", dl: "0s" }, { r: 4, t: "9s", dl: "-3s" }, { r
 const ABM_COLS = [{ c: 1, t: "7.5s", dl: "-2s" }, { c: 4, t: "6s", dl: "-4s" }, { c: 9, t: "8.5s", dl: "-1s" }, { c: 14, t: "7s", dl: "-5s" }, { c: 18, t: "9s", dl: "-3s" }, { c: 22, t: "6.5s", dl: "-0.5s" }];
 const ABM_NODES = [{ r: 1, c: 9, dl: "0s" }, { r: 4, c: 1, dl: "-.8s" }, { r: 4, c: 18, dl: "-2.2s" }, { r: 7, c: 14, dl: "-1.4s" }, { r: 10, c: 4, dl: "-2.8s" }, { r: 10, c: 22, dl: "-.4s" }, { r: 13, c: 9, dl: "-1.9s" }];
 
-const aboutTitle = "Engineering Experience. Proven Performance. Trusted Delivery.";
+const aboutTitle = "Speed and Quality Are Our Core Strengths.";
 
-const tabs = [
-  { title: "Mechanical Works", get img() { return services[0]!.image; }, s: services[0]! },
-  { title: "Electrical Works", get img() { return services[1]!.image; }, s: services[1]! },
-  { title: "Plumbing & Drainage", get img() { return services[2]!.image; }, s: services[2]! },
-  { title: "Fire Protection", get img() { return services[3]!.image; }, s: services[3]! },
+// Featured projects from QMEP Pre-Qualification Document (with real profile photography).
+const featuredProjects = [
+  selectedProjects[0]!,
+  selectedProjects[1]!,
+  selectedProjects[2]!,
+  selectedProjects[5]!,
 ];
 
 const audiences = [
   {
-    img: amcImg, icon: "fa-city", title: "Developers", sub: "Residential & Commercial",
-    text: "Integrated MEP and interior solutions for residential and commercial developments, delivered with quality and timely execution.",
+    img: alWarqaAsset.url, icon: "fa-city", title: "Developers", sub: "Residential & Commercial",
+    text: "Turnkey MEP and interior fit-out solutions for residential villas, towers, commercial and industrial developments across the UAE.",
   },
   {
-    img: buildings, icon: "fa-hard-hat", title: "Main Contractors", sub: "Construction Projects",
-    text: "A dependable MEP partner, coordinated with project schedules, specifications and site requirements.",
+    img: dubaiHospitalAsset.url, icon: "fa-hard-hat", title: "Main Contractors", sub: "Healthcare & Institutional",
+    text: "Disciplined electromechanical execution coordinated with approved drawings, authority regulations, project schedules and HSE standards.",
   },
   {
-    img: maintImg, icon: "fa-drafting-compass", title: "Consultants", sub: "Engineering & Design",
-    text: "Engineering coordination, compliance with project specifications and transparent communication at every stage.",
+    img: heritageVillageAsset.url, icon: "fa-drafting-compass", title: "Consultants & Authorities", sub: "BIM & Compliance",
+    text: "3D modelling, BIM coordination, technical submissions, authority approvals, TAB commissioning and seamless project handover.",
   },
   {
-    img: about1, icon: "fa-user-tie", title: "Project Owners", sub: "Building Owners",
-    text: "Professional project execution and quality you can trust, from initial coordination to handover.",
+    img: sushiWamaAsset.url, icon: "fa-utensils", title: "Hospitality & Retail", sub: "Design & Build Fit-Out",
+    text: "End-to-end restaurant, hotel, office and retail interior design, bespoke joinery and integrated MEP fit-out delivery.",
   },
 ];
 
@@ -67,7 +63,7 @@ const HERO_SLOGANS = [
   { k: "home.hero.h1", a: "Where Quality", b: "Meets", c: "Speed." },
   { k: "home.hero.s2", a: "20 Years of", b: "MEP", c: "Excellence." },
   { k: "home.hero.s3", a: "MEP Contractor", b: "of", c: "Choice." },
-  { k: "home.hero.s4", a: "Quality in", b: "Every", c: "Detail." },
+  { k: "home.hero.s4", a: "Building a Better", b: "Tomorrow", c: "Together." },
 ];
 const HERO_SLOGAN_MS = 4200;
 
@@ -161,7 +157,7 @@ export function HomeContent() {
     return () => { io.disconnect(); if (raf) cancelAnimationFrame(raf); };
   }, [edit, badgeTarget]);
   const [pjRef, pjIn] = useInView<HTMLElement>(0.1);
-  const cur = tabs[tab]!;
+  const cur = featuredProjects[tab]!;
   return (
     <>
       {/* Hero — corporate MEP hero: dark navy overlay on the services video, centred-left copy, two CTAs, trust bar */}
@@ -190,9 +186,9 @@ export function HomeContent() {
 
           <ul className="hx-trust hx-in" style={{ ["--d" as string]: "680ms" }}>
             {[
-              { icon: "fa-drafting-compass", t: "Established 2007", d: "Proven MEP project execution in the UAE" },
-              { icon: "fa-shield-alt", t: "Quality in Every Detail", d: "Quality assurance at every stage" },
-              { icon: "fa-bolt", t: "Efficient Delivery", d: "Focused project management, timely completion" },
+              { icon: "fa-drafting-compass", t: "Established 2007", d: "Nearly 20 years of UAE MEP experience" },
+              { icon: "fa-award", t: "Speed & Quality", d: "Timely delivery without compromising workmanship" },
+              { icon: "fa-cogs", t: "Turnkey Lifecycle", d: "Design & BIM through handover & maintenance" },
             ].map((x, n) => (
               <li key={x.t} className="hx-trust-item">
                 <span className="hx-trust-ico" aria-hidden="true"><i className={`fa ${x.icon}`}></i></span>
@@ -248,7 +244,7 @@ export function HomeContent() {
                   <span className="abm-corner abm-corner-br" aria-hidden="true" />
                 </div>
                 <div className="abm-sub-wrap rv" style={{ ["--d" as string]: "250ms" }}>
-                  <Img k="home.about.img2" d={about2} className="abm-sub" alt="QMEP technician installing an AC unit" />
+                  <Img k="home.about.img2" d={yabaSiteAsset.url} className="abm-sub" alt="QMEP team executing fit-out and MEP works at YABA ARZAZ Restaurant" />
                 </div>
               </div>
             </div>
@@ -262,14 +258,14 @@ export function HomeContent() {
                   ));
                 })()}
               </h2>
-              <p className="abm-lead rv" style={{ ["--d" as string]: "300ms" }}><T k="home.about.lead" d="Established in 2007, QMEP Electromechanical and Interior Works LLC is an experienced MEP contracting company committed to delivering reliable engineering solutions for the UAE construction industry." /></p>
-              <p className="abm-text rv" style={{ ["--d" as string]: "380ms" }}><T k="home.about.text" d="Our approach combines engineering knowledge, professional project management, skilled resources and rigorous quality control to ensure every project is executed with precision, efficiency and accountability." /></p>
+              <p className="abm-lead rv" style={{ ["--d" as string]: "300ms" }}><T k="home.about.lead" d="Established in 2007, QMEP Electromechanical and Interior Works LLC is a UAE electromechanical and interior fit-out contractor with nearly 20 years of industry experience." /></p>
+              <p className="abm-text rv" style={{ ["--d" as string]: "380ms" }}><T k="home.about.text" d="We deliver integrated, turnkey MEP and interior solutions across the entire project lifecycle — from concept design, 3D/BIM coordination and authority approvals through procurement, installation, testing, commissioning, handover, DLP, O&M and AMC." /></p>
               <ul className="abm-specs">
                 {[
-                  { icon: "fa-award", text: "Quality Workmanship" },
-                  { icon: "fa-stopwatch", text: "Timely Execution" },
+                  { icon: "fa-award", text: "Quality Excellence" },
+                  { icon: "fa-stopwatch", text: "Speed & Efficiency" },
+                  { icon: "fa-drafting-compass", text: "Engineering & BIM" },
                   { icon: "fa-handshake", text: "Lasting Client Relationships" },
-                  { icon: "fa-clipboard-check", text: "Rigorous Quality Control" },
                 ].map((f, fi) => (
                   <li key={f.text} className="rv" style={{ ["--d" as string]: `${460 + fi * 80}ms` }}>
                     <div className="abm-spec"><span className="abm-spec-ico" aria-hidden="true"><i className={`fa ${f.icon}`}></i></span><span className="abm-spec-text"><T k={`home.about.f${fi}`} d={f.text} /></span></div>
@@ -296,17 +292,17 @@ export function HomeContent() {
         </div>
         <div className="container position-relative">
           <div className="mx-head mx-center">
-            <Kicker k="home.proj.kicker" d="Our Projects" />
-            <SplitTitle k="home.proj.title" d="Experience That Delivers. Projects That Speak." className="display-5" />
+            <Kicker k="home.proj.kicker" d="Selected Project Experience" />
+            <SplitTitle k="home.proj.title" d="Delivering Quality Across Complex Projects" className="display-5" />
           </div>
           <div className="row g-4">
             <div className="col-lg-4">
-              <div className="pjx-tabs" role="tablist" aria-label="Project types">
-                {tabs.map((t, n) => (
-                  <div key={t.title} className="mx-rv" style={{ ["--d" as string]: `${250 + n * 110}ms` }}>
+              <div className="pjx-tabs" role="tablist" aria-label="Featured projects">
+                {featuredProjects.map((p, n) => (
+                  <div key={p.id} className="mx-rv" style={{ ["--d" as string]: `${250 + n * 110}ms` }}>
                     <button type="button" role="tab" aria-selected={tab === n} onClick={() => setTab(n)} className={`pjx-tab ${tab === n ? "is-active" : ""}`}>
-                      <span className="pjx-tab-icon" aria-hidden="true"><i className={`fa ${t.s.icon}`}></i></span>
-                      <span className="pjx-tab-text"><small>0{n + 1}</small><strong><T k={`home.proj.tab${n}`} d={t.title} line /></strong></span>
+                      <span className="pjx-tab-icon" aria-hidden="true"><i className={`fa ${p.icon}`}></i></span>
+                      <span className="pjx-tab-text"><small>{p.code} · {p.sector}</small><strong><T k={`home.proj.tab${n}`} d={p.shortTitle} line /></strong></span>
                       <span className="pjx-tab-arrow" aria-hidden="true"><i className="fa fa-arrow-right"></i></span>
                     </button>
                   </div>
@@ -317,19 +313,19 @@ export function HomeContent() {
               <div className="pjx-panel" role="tabpanel">
                 <div className="pjx-inner">
                   <div className="pjx-media" key={`m${tab}`}>
-                    <Img k={`services.${tab}.image`} d={cur.img} alt={cur.title} />
-                    <span className="pjx-chip"><span className="pjx-chip-dot" />Project 0{tab + 1}</span>
+                    <Img k={`home.proj.${tab}.image`} d={cur.image} alt={cur.title} />
+                    <span className="pjx-chip"><span className="pjx-chip-dot" />{cur.location}</span>
                   </div>
                   <div className="pjx-body" key={`b${tab}`}>
-                    <h3 className="pjx-title" style={{ ["--d" as string]: "150ms" }}><T k={`services.${tab}.title`} d={cur.s.title} /></h3>
-                    <p className="pjx-text" style={{ ["--d" as string]: "250ms" }}><T k={`services.${tab}.summary`} d={cur.s.summary} /></p>
+                    <h3 className="pjx-title" style={{ ["--d" as string]: "150ms" }}><T k={`home.proj.${tab}.title`} d={cur.title} /></h3>
+                    <p className="pjx-text" style={{ ["--d" as string]: "250ms" }}><T k={`home.proj.${tab}.overview`} d={cur.overview} /></p>
                     <ul className="pjx-list" style={{ ["--d" as string]: "300ms" }}>
-                      {cur.s.items.slice(0, 3).map((it, j) => (
-                        <li key={j} style={{ ["--d" as string]: `${380 + j * 110}ms` }}><span className="pjx-tick" aria-hidden="true"><i className="fa fa-check"></i></span><span><T k={`services.${tab}.items.${j}`} d={it} /></span></li>
+                      {cur.scope.slice(0, 3).map((it, j) => (
+                        <li key={j} style={{ ["--d" as string]: `${380 + j * 110}ms` }}><span className="pjx-tick" aria-hidden="true"><i className="fa fa-check"></i></span><span><T k={`home.proj.${tab}.scope.${j}`} d={it} /></span></li>
                       ))}
                     </ul>
                     <Link to="/projects" className="abm-btn abm-btn-primary" style={{ ["--d" as string]: "650ms" }}>
-                      <span><T k="home.proj.btn" d="View Our Project Portfolio" line /></span>
+                      <span><T k="home.proj.btn" d="View Full Project Portfolio" line /></span>
                       <span className="abm-btn-ico" aria-hidden="true"><i className="fa fa-arrow-right"></i></span>
                     </Link>
                   </div>
@@ -345,7 +341,7 @@ export function HomeContent() {
 
 
       <Process />
-      <CtaBanner k="home.cta" kicker="Our Commitment" title="Quality in Every Detail." text="Quality is not simply a final inspection at QMEP; it is an integral part of every stage of project delivery — from engineering coordination and material selection to installation, testing and commissioning." button="Get In Touch" />
+      <CtaBanner k="home.cta" kicker="Our Commitment" title="Together, Committed to Quality in Everything We Do." text="We deliver integrated engineering, MEP and interior solutions through quality workmanship, technical excellence, efficient project execution and dependable after-sales support across the UAE." button="Get In Touch" />
       <QuoteSection />
       <Faq />
     </>

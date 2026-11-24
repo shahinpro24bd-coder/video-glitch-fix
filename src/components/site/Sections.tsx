@@ -47,7 +47,7 @@ export function ServicesGrid() {
               <span key={n} className="svx-word"><span style={{ ["--w" as string]: n }}>{w}</span></span>
             ))}
           </h2>
-          <p className="svx-lead"><T k="svcgrid.lead" d="We provide integrated MEP and interior solutions, supporting construction projects from initial coordination through installation, testing, commissioning and handover." /></p>
+          <p className="svx-lead"><T k="svcgrid.lead" d="QMEP Electromechanical and Interior Works LLC provides integrated engineering, MEP and interior fit-out solutions — from concept design and BIM coordination to procurement, installation, testing, commissioning and maintenance." /></p>
         </div>
 
         <div className="row g-4 svx-row">
@@ -170,7 +170,7 @@ export function WhyUs() {
                 <span key={n} className={`svx-word ${n >= words.length - 2 ? "wcx-hl" : ""}`}><span style={{ ["--w" as string]: n }}>{w}</span></span>
               ))}
             </h2>
-            <p className="wcx-lead wcx-rv" style={{ ["--d" as string]: "450ms" }}><T k="why.lead" d="Engineering excellence backed by experience, technical expertise and an unwavering commitment to quality." /></p>
+            <p className="wcx-lead wcx-rv" style={{ ["--d" as string]: "450ms" }}><T k="why.lead" d="At QMEP, Speed and Quality are our core strengths — backed by nearly 20 years of UAE experience, technical excellence and uncompromising quality assurance." /></p>
             <div className="row g-3" onPointerLeave={() => setPaused(false)}>
               {feats.map((w, i) => (
                 <div key={w.title} className="col-sm-6 wcx-rv" style={{ ["--d" as string]: `${550 + i * 120}ms` }}>
@@ -281,7 +281,7 @@ export function WhoWeServe({ audiences }: {
           <div className="col-lg-7">
             <Kicker k="aud.kicker" d="Who We Work With" />
             <SplitTitle k="aud.title" d="Developers, Main Contractors, Consultants & Project Owners" className="display-5" />
-            <p className="mx-lead mx-rv" style={{ ["--d" as string]: "450ms" }}><T k="aud.lead" d="From residential and commercial developments to complex building infrastructure, we bring the technical capability and execution discipline required to meet project objectives." /></p>
+            <p className="mx-lead mx-rv" style={{ ["--d" as string]: "450ms" }}><T k="aud.lead" d="Our multidisciplinary capabilities deliver efficient, reliable and compliant building services across residential, commercial, hospitality, healthcare, heritage and industrial developments." /></p>
           </div>
           <div className="col-lg-5">
             <div className="d-flex justify-content-lg-end audx-callwrap mx-rv" style={{ ["--d" as string]: "550ms" }}>
@@ -329,10 +329,10 @@ export function Process() {
         <div className="row g-4 align-items-end mb-5">
           <div className="col-lg-7">
             <Kicker k="prc.kicker" d="Our Work Process" />
-            <SplitTitle k="prc.title" d="From Coordination To Handover" className="display-5 mb-0" />
+            <SplitTitle k="prc.title" d="Full Project Lifecycle Delivery" className="display-5 mb-0" />
           </div>
           <div className="col-lg-5">
-            <p className="mx-lead prc-head-lead mx-rv" style={{ ["--d" as string]: "450ms" }}><T k="prc.lead" d="We support construction projects from initial coordination through installation, testing, commissioning and handover." /></p>
+            <p className="mx-lead prc-head-lead mx-rv" style={{ ["--d" as string]: "450ms" }}><T k="prc.lead" d="From concept design, 3D/BIM coordination and authority approvals through procurement, installation, testing, commissioning, handover and ongoing maintenance." /></p>
           </div>
         </div>
         <ol className="prc-track">
@@ -455,8 +455,8 @@ export function QuoteForm() {
       <div className="col-12">
         <select name="property_type" className="form-select" style={h} defaultValue="">
           <option value="" disabled>Project Type</option>
-          <option>Residential Development</option><option>Commercial Development</option><option>Mixed-Use Development</option>
-          <option>Building Infrastructure</option><option>Interior Fit-Out</option><option>Other</option>
+          <option>Healthcare Facility</option><option>Residential Development</option><option>Commercial &amp; Retail</option>
+          <option>Hospitality &amp; Restaurant Fit-Out</option><option>Cultural Heritage &amp; Renovation</option><option>Industrial &amp; Infrastructure</option><option>Other</option>
         </select>
       </div>
       <div className="col-12"><textarea name="details" required maxLength={3000} className="form-control" rows={5} placeholder="Project Details"></textarea></div>
@@ -481,11 +481,11 @@ export function QuoteSection() {
           <div className="col-lg-5">
             <Kicker k="qt.kicker" d="Let's Build Something Exceptional" />
             <SplitTitle k="qt.title" d="Looking for a Reliable MEP Contractor?" className="display-5 mb-4" />
-            <p className="mx-lead mb-4 mx-rv" style={{ ["--d" as string]: "400ms" }}><T k="qt.lead" d="Partner with QMEP for dependable engineering solutions, professional project execution and quality you can trust. Whether you are a developer, main contractor, consultant or project owner, our team is ready to discuss your project requirements." /></p>
+            <p className="mx-lead mb-4 mx-rv" style={{ ["--d" as string]: "400ms" }}><T k="qt.lead" d="Partner with QMEP Electromechanical and Interior Works LLC for engineered, cost-effective and quality-driven MEP and interior fit-out solutions delivered on time across the UAE." /></p>
             <div className="row g-3">
               {[
-                { icon: "fa-phone-alt", k: "qt.l1", label: "Call Our Team", value: company.phone, href: company.phoneHref },
-                { icon: "fa-whatsapp", brand: true, k: "qt.l2", label: "Chat on WhatsApp", value: "Message Us Now", href: company.whatsappHref },
+                { icon: "fa-phone-alt", k: "qt.l1", label: "Dubai Office", value: company.phone, href: company.phoneHref },
+                { icon: "fa-whatsapp", brand: true, k: "qt.l2", label: "Mobile / WhatsApp", value: company.mobile, href: company.whatsappHref },
                 { icon: "fa-envelope-open", k: "qt.l3", label: "Mail Us Now", value: company.email, href: `mailto:${company.email}` },
               ].map((l, n) => (
                 <div key={l.k} className="col-12 mx-rv" style={{ ["--d" as string]: `${500 + n * 110}ms` }}>

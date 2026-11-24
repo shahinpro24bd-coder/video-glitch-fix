@@ -159,7 +159,7 @@ function printInvoice(r: Row) {
   const amt = Number(r.amount) || 0, vat = invoiceTotal(r as never) - amt;
   const esc = (s: unknown) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
   w.document.write(`<html><head><title>${esc(r.invoice_no)}</title><style>body{font-family:sans-serif;padding:40px;color:#222}table{width:100%;border-collapse:collapse;margin-top:24px}td,th{border:1px solid #ccc;padding:8px;text-align:left}.r{text-align:right}</style></head><body>
-  <h2>QMEP Electromechanical LLC</h2><p>Tel: +971 56 547 7186</p><h3>TAX INVOICE ${esc(r.invoice_no)}</h3>
+  <h2>QMEP Electromechanical and Interior Works LLC</h2><p>Office 101-519, Hor Al Anz, Deira, P.O. Box 66916, Dubai, UAE · Tel: +971 4 229 7339 · Mob: +971 56 233 5339 · DED License No. 597867</p><h3>TAX INVOICE ${esc(r.invoice_no)}</h3>
   <p><b>Bill to:</b> ${esc(r.customer_name)}<br><b>Date:</b> ${esc(r.issue_date)} &nbsp; <b>Due:</b> ${esc(r.due_date)}</p>
   <table><tr><th>Description</th><th class="r">Amount (AED)</th></tr><tr><td>${esc(r.description)}</td><td class="r">${amt.toFixed(2)}</td></tr>
   <tr><td class="r">VAT ${esc(r.vat_percent)}%</td><td class="r">${vat.toFixed(2)}</td></tr><tr><th class="r">Total</th><th class="r">${invoiceTotal(r as never).toFixed(2)}</th></tr></table>

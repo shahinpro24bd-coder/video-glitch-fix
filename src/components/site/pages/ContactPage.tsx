@@ -6,11 +6,12 @@ import { Reveal, Words, dl } from "@/components/site/Reveal";
 import { T } from "@/lib/editable";
 
 const lines = [
-  { k: "contact.l1", icon: "fa-map-marker-alt", label: "Our Office", value: company.address },
-  { k: "contact.l2", icon: "fa-phone-alt", label: "Call Us Now", value: company.phone, href: company.phoneHref },
-  { k: "contact.l3", icon: "fa-whatsapp", brand: true, label: "WhatsApp", value: "Chat With Us", href: company.whatsappHref },
-  { k: "contact.l4", icon: "fa-envelope-open", label: "Mail Us Now", value: company.email, href: `mailto:${company.email}` },
-  { k: "contact.l5", icon: "fa-clock", label: "Working Hours", value: company.hours },
+  { k: "contact.l1", icon: "fa-map-marker-alt", label: "Registered Office (Dubai)", value: company.address },
+  { k: "contact.l2", icon: "fa-phone-alt", label: "Office Landline", value: company.phone, href: company.phoneHref },
+  { k: "contact.l3", icon: "fa-whatsapp", brand: true, label: "Mobile / WhatsApp", value: company.mobile, href: company.whatsappHref },
+  { k: "contact.l4", icon: "fa-fax", label: "Fax", value: company.fax },
+  { k: "contact.l5", icon: "fa-envelope-open", label: "Email", value: company.email, href: `mailto:${company.email}` },
+  { k: "contact.l6", icon: "fa-clock", label: "Working Hours", value: company.hours },
 ];
 
 export function ContactPage() {
@@ -24,7 +25,7 @@ export function ContactPage() {
             <div className="col-lg-6">
               <h4 className="section-title rx-left" style={dl(0)}><T k="contact.kicker" d="Contact Us" line /></h4>
               <h2 className="display-5 mb-4"><Words k="contact.title" d="Looking for a Reliable MEP Contractor?" /></h2>
-              <p className="mb-4 rx-up" style={dl(400)}><T k="contact.lead" d="Partner with QMEP for dependable engineering solutions, professional project execution and quality you can trust. Whether you are a developer, main contractor, consultant or project owner, our team is ready to discuss your project requirements." /></p>
+              <p className="mb-4 rx-up" style={dl(400)}><T k="contact.lead" d="Contact QMEP Electromechanical and Interior Works LLC (Dubai DED License No. 597867 · DCCI No. 121391) to discuss your MEP contracting, interior fit-out, DLP, O&M or AMC requirements across the UAE." /></p>
               <div className="row g-4">
                 {lines.map((l, n) => (
                   <div key={l.k} className="col-12 rx-left" style={dl(500 + n * 100)}>
@@ -42,8 +43,8 @@ export function ContactPage() {
       </Reveal>
       <Reveal as="div" className="container-fluid pt-5 px-0">
         <div className="ctx-map rx-clip" style={dl(0)}>
-          <iframe title="QMEP location map" className="w-100" style={{ height: 450, border: 0, display: "block" }}
-            src="https://www.google.com/maps?q=Dubai,United+Arab+Emirates&output=embed"></iframe>
+          <iframe title="QMEP Office Location — Hor Al Anz, Deira, Dubai" className="w-100" style={{ height: 450, border: 0, display: "block" }}
+            src="https://www.google.com/maps?q=Hor+Al+Anz,Deira,Dubai,United+Arab+Emirates&output=embed"></iframe>
         </div>
       </Reveal>
     </>

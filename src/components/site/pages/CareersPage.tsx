@@ -7,22 +7,22 @@ import { Reveal, Words, dl } from "@/components/site/Reveal";
 import { T } from "@/lib/editable";
 
 const pillars = [
-  { icon: "fa-drafting-compass", title: "Engineering Standards", text: "Work on residential, commercial and infrastructure projects delivered to UAE codes and specifications." },
-  { icon: "fa-hard-hat", title: "Safety-First Culture", text: "Structured HSE practices, clear supervision and well-coordinated job sites across every trade." },
-  { icon: "fa-chart-line", title: "Career Growth", text: "Hands-on progression alongside experienced project managers, engineers and site supervisors." },
+  { icon: "fa-drafting-compass", title: "Technical Excellence", text: "Develop your skills across BIM coordination, MEP engineering and turnkey interior fit-out projects across the UAE." },
+  { icon: "fa-hard-hat", title: "Zero-Harm HSE Culture", text: "Guided by QMEP's signed HSE and Sustainability Policies with dedicated HSE Officers, training and site supervision." },
+  { icon: "fa-chart-line", title: "Structured Growth", text: "Clear career pathways across Projects & Operations, Engineering & BIM, Commercial & Estimation, and HSE & QA/QC." },
 ];
 
 const openings = [
-  { title: "HVAC Site Engineer", dept: "Mechanical Works", type: "Full-Time", location: "Dubai, UAE", summary: "Supervise HVAC and chilled-water installations, coordinate site teams and oversee testing and commissioning." },
-  { title: "Electrical Estimation Engineer", dept: "Electrical Works", type: "Full-Time", location: "Dubai, UAE", summary: "Prepare accurate MEP material take-offs, supplier comparisons and tender submissions for UAE projects." },
-  { title: "Plumbing & Fire Fighting Foreman", dept: "Plumbing & Life Safety", type: "Full-Time", location: "Dubai, UAE", summary: "Lead on-site water supply, drainage and firefighting installation crews to schedule and quality standards." },
-  { title: "MEP QA/QC Engineer", dept: "Quality & Compliance", type: "Full-Time", location: "Dubai, UAE", summary: "Manage inspections, method statements, authority approvals and handover documentation across active sites." },
+  { title: "MEP Project / Site Engineer", dept: "Projects & Operations", type: "Full-Time", location: "Dubai, UAE", summary: "Execute on-site HVAC, electrical, plumbing and firefighting works in coordination with supervisors, foremen and authority inspections." },
+  { title: "MEP Design & BIM Engineer", dept: "Engineering & BIM", type: "Full-Time", location: "Dubai, UAE", summary: "Deliver concept designs, detailed engineering drawings, 3D modelling, BIM coordination and authority approval submissions." },
+  { title: "Quantity Surveyor / Estimation Engineer", dept: "Commercial & Procurement", type: "Full-Time", location: "Dubai, UAE", summary: "Prepare accurate MEP and fit-out take-offs, technical evaluations, supplier comparisons and tender submissions." },
+  { title: "HSE Officer / QA-QC Engineer", dept: "HSE & QA/QC", type: "Full-Time", location: "Dubai, UAE", summary: "Uphold QMEP's Quality, HSE and Sustainability Policies through site audits, defect prevention, TAB verification and handover dossiers." },
 ];
 
 const hrLines = [
   { k: "careers.l1", icon: "fa-envelope-open", label: "Send Your CV", value: company.email, href: `mailto:${company.email}?subject=Career%20Application%20-%20QMEP` },
-  { k: "careers.l2", icon: "fa-phone-alt", label: "HR & Office", value: company.phone, href: company.phoneHref },
-  { k: "careers.l3", icon: "fa-whatsapp", brand: true, label: "WhatsApp", value: "Message Our Team", href: company.whatsappHref },
+  { k: "careers.l2", icon: "fa-phone-alt", label: "Dubai Office", value: company.phone, href: company.phoneHref },
+  { k: "careers.l3", icon: "fa-whatsapp", brand: true, label: "Mobile / WhatsApp", value: company.mobile, href: company.whatsappHref },
   { k: "careers.l4", icon: "fa-map-marker-alt", label: "Work Location", value: company.address },
 ];
 
@@ -93,7 +93,7 @@ export function CareersPage() {
         <div className="container position-relative">
           <SectionTitle k="careers.intro" kicker="Join Our Team" title="Build Your Career With QMEP" />
           <p className="text-center mx-auto mb-5 rx-up" style={dl(300, { maxWidth: 780 })}>
-            <T k="careers.intro.text" d="Since 2007, QMEP has delivered mechanical, electrical, plumbing, fire protection, ELV and interior works across the UAE. We welcome skilled engineers, technicians and project professionals who take pride in quality execution." />
+            <T k="careers.intro.text" d="Established in 2007, QMEP Electromechanical and Interior Works LLC's strength lies in our experienced engineering team, skilled workforce and dedicated professionals. Join us in building a better tomorrow together across the UAE." />
           </p>
           <div className="row g-4">
             {pillars.map((p, i) => (

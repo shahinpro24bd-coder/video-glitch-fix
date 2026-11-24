@@ -1,36 +1,36 @@
 import { Link } from "@tanstack/react-router";
-import buildingsAsset from "@/assets/buildings.webp.asset.json";
-import imgResAsset from "@/assets/about-1.webp.asset.json";
-import imgComAsset from "@/assets/hero-2.webp.asset.json";
-import imgFitAsset from "@/assets/about-2.webp.asset.json";
-import imgFmAsset from "@/assets/service-maintenance.webp.asset.json";
-import imgMcAsset from "@/assets/hero-3.webp.asset.json";
+import alWarqaAsset from "@/assets/project-al-warqa-g9.webp.asset.json";
+import dubaiHospitalAsset from "@/assets/project-dubai-hospital.webp.asset.json";
+import alLehbabAsset from "@/assets/project-al-lehbab-villas.webp.asset.json";
+import yabaEntranceAsset from "@/assets/project-yaba-arzaz-entrance.webp.asset.json";
+import heritageAsset from "@/assets/project-heritage-village.webp.asset.json";
+import sushiWamaAsset from "@/assets/project-sushiwama.webp.asset.json";
 import { PageHeader } from "@/components/site/Layout";
 import { CtaBanner } from "@/components/site/Sections";
 import { Reveal, dl } from "@/components/site/Reveal";
 import { T, Img } from "@/lib/editable";
 
 const list = [
-  { img: imgResAsset.url, tag: "Villas · Apartments · Towers", icon: "fa-home", title: "Residential Developments", text: "Integrated MEP and interior works for villas, apartments and residential buildings." },
-  { img: imgComAsset.url, tag: "Offices · Retail", icon: "fa-building", title: "Commercial Developments", text: "MEP solutions for offices, retail spaces and commercial buildings." },
-  { img: imgFitAsset.url, tag: "Fit-Out · Finishes", icon: "fa-drafting-compass", title: "Interior Fit-Out Projects", text: "Interior fit-out, architectural finishes, ceiling systems and partitions, coordinated with MEP works." },
-  { img: imgFmAsset.url, tag: "Plant Rooms · Life Safety", icon: "fa-industry", title: "Building Infrastructure", text: "Building services for complex infrastructure, including fire protection, life safety and ELV systems." },
-  { img: imgMcAsset.url, tag: "Specs · Schedules · HSE", icon: "fa-hard-hat", title: "Developers & Main Contractors", text: "A reliable MEP partner working to project specifications, schedules and HSE requirements." },
+  { img: dubaiHospitalAsset.url, tag: "Oncology Center · Medical Infrastructure", icon: "fa-hospital", title: "Healthcare Facilities", text: "Specialized HVAC, electrical, CBS, plumbing, drainage, firefighting and fire alarm installations engineered for clinical environments." },
+  { img: alLehbabAsset.url, tag: "Villas · G+9 Buildings · Housing", icon: "fa-home", title: "Residential Developments", text: "Complete MEP, ELV and building services for villa communities and multi-storey residential buildings such as Al Lehbab and Al Warqa." },
+  { img: yabaEntranceAsset.url, tag: "Restaurants · Hotels · Design & Build", icon: "fa-utensils", title: "Hospitality & F&B Fit-Out", text: "Turnkey BIM-based design, bespoke joinery, architectural finishes and integrated MEP works for restaurants and hospitality destinations." },
+  { img: heritageAsset.url, tag: "Al Shindagha · Refurbishment", icon: "fa-landmark", title: "Cultural Heritage & Renovation", text: "Sensitive electromechanical construction and renovation integrating modern MEP and life safety systems within historic architecture." },
+  { img: sushiWamaAsset.url, tag: "Malls · Offices · Industrial Facilities", icon: "fa-industry", title: "Commercial, Retail & Industrial", text: "Compliant MEP, BMS, fire protection, security and fit-out delivery for retail outlets, commercial offices and industrial developments." },
 ];
 
 export function IndustriesPage() {
   return (
     <>
-      <PageHeader k="industries" title="Industries" crumb="Industries We Serve" image={buildingsAsset.url} />
+      <PageHeader k="industries" title="Industries" crumb="Industries We Serve" image={alWarqaAsset.url} />
       <Reveal className="ind-section">
         <span className="ind-grid-bg" aria-hidden="true" />
         <div className="container position-relative">
           <div className="ind-head">
             <div>
               <span className="ind-kicker rx-left" style={dl(0)}><T k="ind.kicker" d="Industries We Serve" line /></span>
-              <h2 className="ind-title rx-rise" style={dl(150)}><T k="ind.title" d="MEP Solutions For Every" /> <em><T k="ind.titleEm" d="Project Type" line /></em></h2>
+              <h2 className="ind-title rx-rise" style={dl(150)}><T k="ind.title" d="Multidisciplinary MEP &" /> <em><T k="ind.titleEm" d="Fit-Out Sectors" line /></em></h2>
             </div>
-            <p className="ind-lead rx-right" style={dl(350)}><T k="ind.lead" d="From residential and commercial developments to complex building infrastructure, we bring the technical capability and execution discipline required to meet project objectives." /></p>
+            <p className="ind-lead rx-right" style={dl(350)}><T k="ind.lead" d="Our project portfolio spans healthcare, cultural heritage, residential, commercial, hospitality and industrial developments across Dubai, Abu Dhabi and the wider UAE." /></p>
           </div>
           <div className="ind-bento">
             {list.map((l, i) => (
@@ -55,7 +55,7 @@ export function IndustriesPage() {
           </div>
         </div>
       </Reveal>
-      <CtaBanner k="ind.banner" title="Discuss Your Project Requirements" text="Whether you are a developer, main contractor, consultant or project owner, our team is ready to discuss your project requirements." button="Contact Us" />
+      <CtaBanner k="ind.banner" title="Discuss Your Project Requirements" text="Whether you are a developer, main contractor, consultant or project owner, QMEP delivers compliant MEP and interior fit-out solutions tailored to your sector." button="Contact Us" />
     </>
   );
 }

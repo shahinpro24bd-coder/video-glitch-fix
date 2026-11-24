@@ -24,6 +24,22 @@ const staleFaqQs = new Set([
   "Do you provide emergency maintenance?",
 ]);
 const staleTexts: Record<string, string> = { "home.about.title": "Your Trusted Partner For MEP Solutions" };
+const staleServiceSlugs = new Set(["hvac", "electrical", "plumbing", "mep-maintenance", "amc", "vrf"]);
+const staleServiceTitles = new Set([
+  "HVAC & Air Conditioning",
+  "Electrical Services",
+  "Plumbing Services",
+  "MEP Maintenance",
+  "Annual Maintenance Contracts",
+  "VRF/VRV Systems",
+]);
+
+/** Saved services, or null when nothing was saved or the saved list is the old built-in copy. */
+export function savedServices(v: unknown): CmsService[] | null {
+  if (!Array.isArray(v) || !v.length) return null;
+  const list = v as CmsService[];
+  return list.every((s) => staleServiceSlugs.has(s.slug) && staleServiceTitles.has(s.title)) ? null : list;
+}
 
 /** Saved FAQs, or null when nothing was saved or the saved list is the old built-in copy. */
 export function savedFaqs(v: unknown): CmsFaq[] | null {
@@ -42,9 +58,10 @@ export function savedTexts(v: unknown): Record<string, string> {
 // Merges saved content into the shared site data in place, so every page picks it up.
 export function applyContent(c: SiteContent | null | undefined) {
   Object.assign(company, defaults.company, c?.company ?? {});
+  const activeServices = savedServices(c?.services);
   for (const s of services) {
     const base = defaults.services.find((d) => d.slug === s.slug)!;
-    const saved = c?.services?.find((d) => d.slug === s.slug);
+    const saved = activeServices?.find((d) => d.slug === s.slug);
     Object.assign(s, base, saved ? { ...saved, image: saved.image && !saved.image.startsWith("/assets/") ? saved.image : base.image, items: saved.items?.length ? saved.items : base.items } : {});
   }
   faqs.splice(0, faqs.length, ...(savedFaqs(c?.faqs) ?? defaults.faqs));

@@ -16,7 +16,7 @@
 - [x] Client video 4: swap Contact and More positions in the navbar
 - [x] Client video 5: add Careers page in navigation, footer, and page editor
 - [x] Video 6: remove the "20 Years of Excellence" emblem from the home hero video corner (keep in navbar logo)
-- [ ] Client video 4: replace project photos with actual project photos once provided
-- [ ] Client contents text — user will send it next time
+- [x] Apply exact QMEP_PQ.docx company details (DED License 597867, DCCI 121391, address, +971 4 229 7339, +971 56 233 5339, Ummarkoppans@gmail.com)
+- [x] Replace project showcase and portfolio with all 6 QMEP projects (+ real photos) and 7 management-experience projects from QMEP_PQ.docx
+- [x] Update all website pages (Home, About + Org Chart & Policies, Services, Service Details, AMC, Industries, Careers, Contact, SEO head metadata) to 100% match QMEP_PQ.docx
 - [ ] Mobile view adjustments — client will discuss later
-- [ ] Phone number change — client will send later

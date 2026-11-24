@@ -6,9 +6,9 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "QMEP | Where Quality Meets Speed — MEP Contractor of Choice" },
-      { name: "description", content: "Established in 2007, QMEP delivers integrated MEP and interior solutions for construction and development projects across the UAE." },
+      { name: "description", content: "Established in 2007 in Dubai, QMEP Electromechanical and Interior Works LLC delivers turnkey MEP, Fire & Life Safety, ELV/BMS, Interior Fit-Out and AMC solutions across the UAE." },
       { property: "og:title", content: "QMEP | Where Quality Meets Speed — MEP Contractor of Choice" },
-      { property: "og:description", content: "20 years of excellence in MEP: mechanical, electrical, plumbing, fire protection, ELV and interior works across the UAE." },
+      { property: "og:description", content: "Nearly 20 years of MEP & interior fit-out excellence in the UAE: concept & BIM through installation, TAB, handover, DLP, O&M and AMC." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

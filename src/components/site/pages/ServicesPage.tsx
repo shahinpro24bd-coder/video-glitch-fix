@@ -14,7 +14,7 @@ export function ServicesPage() {
       <div className="band py-5 svd-section">
         <span className="ab-gridbg" aria-hidden="true" />
         <div className="container position-relative">
-          <Reveal as="div"><SectionTitle k="services.details" kicker="Service Details" title="Integrated MEP & Interior Solutions" /></Reveal>
+          <Reveal as="div"><SectionTitle k="services.details" kicker="Service Details" title="MEP, Fire Safety, ELV & Interior Fit-Out" /></Reveal>
           {services.map((s, n) => {
             const flip = n % 2 === 1;
             return (
@@ -45,7 +45,7 @@ export function ServicesPage() {
         </div>
       </div>
       <Process />
-      <CtaBanner k="services.cta" title="Looking for a Reliable MEP Contractor?" text="Partner with QMEP for dependable engineering solutions, professional project execution and quality you can trust." button="Request a Quotation" />
+      <CtaBanner k="services.cta" title="Delivering Integrated Engineering & Interior Solutions" text="From concept design and BIM coordination to installation, testing, commissioning, handover and maintenance across the UAE." button="Request a Quotation" />
     </>
   );
 }

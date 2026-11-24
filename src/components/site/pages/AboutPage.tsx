@@ -1,50 +1,70 @@
 import { Link } from "@tanstack/react-router";
+import { useState } from "react";
 import hero1Asset from "@/assets/hero-1.webp.asset.json";
 import about1Asset from "@/assets/about-1.webp.asset.json";
-import about2Asset from "@/assets/about-2.webp.asset.json";
-import aboutDetailAsset from "@/assets/about-detail.webp.asset.json";
-import buildingsAsset from "@/assets/buildings.webp.asset.json";
+import yabaSiteAsset from "@/assets/project-yaba-arzaz-site.webp.asset.json";
+import heritageAsset from "@/assets/project-heritage-village.webp.asset.json";
+import dubaiHospitalAsset from "@/assets/project-dubai-hospital.webp.asset.json";
 import hvacImgAsset from "@/assets/service-hvac.webp.asset.json";
 import elecImgAsset from "@/assets/service-electrical.webp.asset.json";
 import plumbImgAsset from "@/assets/service-plumbing.webp.asset.json";
+import orgChartAsset from "@/assets/qmep-org-chart.webp.asset.json";
+import qualityPolicyAsset from "@/assets/qmep-quality-policy.webp.asset.json";
+import hsePolicyAsset from "@/assets/qmep-hse-policy.webp.asset.json";
+import sustainabilityPolicyAsset from "@/assets/qmep-sustainability-policy.webp.asset.json";
 import { PageHeader } from "@/components/site/Layout";
-import { services } from "@/lib/site";
+import { company, licensedActivities, processSteps, services } from "@/lib/site";
 import { Reveal, Words, dl } from "@/components/site/Reveal";
 import { T, Img, useEditable } from "@/lib/editable";
 
 const hero1 = hero1Asset.url;
 const about1 = about1Asset.url;
-const about2 = about2Asset.url;
-const buildings = buildingsAsset.url;
 
 const pillars = [
-  { letter: "M", word: "Mechanical", img: hvacImgAsset.url, text: "HVAC systems, ventilation, air conditioning, chilled water systems and equipment installation.", items: ["HVAC", "Chilled Water", "Ventilation"] },
-  { letter: "E", word: "Electrical", img: elecImgAsset.url, text: "Power distribution, lighting systems, electrical installations, containment, wiring and testing.", items: ["Power", "Lighting", "Containment"] },
-  { letter: "P", word: "Plumbing", img: plumbImgAsset.url, text: "Water supply, drainage, sanitary installations, pumps and piping networks.", items: ["Water Supply", "Drainage", "Sanitary"] },
+  { letter: "M", word: "Mechanical", img: hvacImgAsset.url, text: "HVAC and air conditioning systems, chilled water networks, ventilation, smoke management, stairwell pressurisation and hot water boiler systems.", items: ["HVAC & Chilled Water", "Smoke Control", "Boilers & TAB"] },
+  { letter: "E", word: "Electrical", img: elecImgAsset.url, text: "Power distribution, lighting, emergency lighting, Central Battery Systems (CBS), small power, earthing, lightning protection and ELV / BMS.", items: ["Power & Lighting", "CBS & Earthing", "ELV & BMS"] },
+  { letter: "P", word: "Plumbing", img: plumbImgAsset.url, text: "Domestic water supply, sanitary plumbing, soil and waste drainage, stormwater drainage, pumping systems and integrated firefighting networks.", items: ["Water & Drainage", "Pumping Systems", "Firefighting"] },
 ];
 
-const approach = [
-  { icon: "fa-comments", title: "Coordinate", text: "We review project requirements and specifications and coordinate with all stakeholders." },
-  { icon: "fa-search", title: "Select Materials", text: "Materials and equipment chosen to meet project specifications and quality standards." },
-  { icon: "fa-tools", title: "Install", text: "Skilled resources execute the works with precision, efficiency and accountability." },
-  { icon: "fa-clipboard-check", title: "Test & Commission", text: "Systems are tested and commissioned to confirm workmanship, compliance and performance." },
-  { icon: "fa-handshake", title: "Hand Over", text: "Timely handover, backed by transparent communication throughout the project." },
-];
+const approachIcons = ["fa-drafting-compass", "fa-boxes", "fa-tools", "fa-clipboard-check", "fa-shield-alt"];
 
-const clients = ["Developers", "Main Contractors", "Consultants", "Project Owners", "Residential Developments", "Commercial Developments", "Building Infrastructure", "Interior Fit-Out"];
+const sectors = ["Healthcare", "Cultural Heritage", "Residential Developments", "Commercial & Retail", "Hospitality & Restaurants", "Industrial Developments", "Design & Build Fit-Out", "DLP, O&M & AMC"];
 
 const values = [
-  { icon: "fa-award", title: "Quality Workmanship", text: "Quality is built into every stage of project delivery, not left to a final inspection." },
-  { icon: "fa-stopwatch", title: "Timely Execution", text: "Focused project management and resource optimization for timely completion." },
-  { icon: "fa-handshake", title: "Lasting Client Relationships", text: "Transparent communication, coordination and a commitment to client satisfaction." },
-  { icon: "fa-hard-hat", title: "Safety & Compliance", text: "Commitment to applicable UAE regulations, project specifications and HSE requirements." },
-  { icon: "fa-chart-line", title: "Continuous Improvement", text: "We continuously strive to improve our processes, optimize resources and meet our clients' expectations." },
+  { icon: "fa-award", title: "Quality Excellence", text: "Maintaining high standards of workmanship, technical compliance and quality assurance throughout every stage of project delivery." },
+  { icon: "fa-stopwatch", title: "Speed and Efficiency", text: "Optimizing resources, streamlining processes and adopting effective execution strategies to achieve timely project completion." },
+  { icon: "fa-handshake", title: "Client Satisfaction", text: "Understanding client requirements and delivering tailored engineering solutions that provide lasting value and after-sales support." },
+  { icon: "fa-drafting-compass", title: "Technical Excellence", text: "Developing our people, strengthening engineering capabilities and embracing modern technologies and best industry practices." },
+  { icon: "fa-hard-hat", title: "Health, Safety and Environment", text: "Promoting a safe working environment, zero-harm HSE practices and responsible construction practices across all sites." },
+  { icon: "fa-chart-line", title: "Continuous Improvement", text: "Building a culture of accountability, teamwork, innovation and operational excellence." },
+];
+
+const policies = [
+  {
+    title: "Quality Policy Statement",
+    motto: "Together, we are committed to Quality in everything we do.",
+    summary: "Delivering high quality MEP and firefighting works in full compliance with UAE standards, preventing defects and driving continual improvement.",
+    image: qualityPolicyAsset.url,
+  },
+  {
+    title: "HSE Policy",
+    motto: "Together, we are committed to a Safe, Healthy and Sustainable Environment.",
+    summary: "Proactive risk management, UAE HSE compliance, proper training and supervision to achieve zero harm across every project site.",
+    image: hsePolicyAsset.url,
+  },
+  {
+    title: "Sustainability Policy",
+    motto: "Together, we are committed to a Sustainable Future.",
+    summary: "Minimizing environmental footprint through energy-efficient technologies, responsible waste management, resource conservation and ethical governance.",
+    image: sustainabilityPolicyAsset.url,
+  },
 ];
 
 export function AboutPage() {
   const c = useEditable();
-  const commitRaw = c.get("about.commit.image", about2);
-  const commitImg = commitRaw && !commitRaw.startsWith("/assets/") ? commitRaw : about2;
+  const [previewDoc, setPreviewDoc] = useState<{ title: string; image: string } | null>(null);
+  const commitRaw = c.get("about.commit.image", heritageAsset.url);
+  const commitImg = commitRaw && !commitRaw.startsWith("/assets/") ? commitRaw : heritageAsset.url;
   return (
     <>
       <PageHeader k="about" title="About Us" crumb="About" image={hero1} />
@@ -58,16 +78,16 @@ export function AboutPage() {
                 <span className="why-tick why-tick-tl rx-pop" style={dl(600)} aria-hidden="true" />
                 <span className="why-tick why-tick-tr rx-pop" style={dl(700)} aria-hidden="true" />
                 <Img k="about.img1" d={about1} className="ab-img-main rx-clip" style={dl(0)} alt="MEP engineer on a Dubai project" />
-                <Img k="about.img2" d={aboutDetailAsset.url} className="ab-img-sub rx-zoom" style={dl(500)} alt="QMEP technician at work" />
+                <Img k="about.img2" d={yabaSiteAsset.url} className="ab-img-sub rx-zoom" style={dl(500)} alt="QMEP engineers and technicians executing site works" />
                 <span className="ab-vert ab-vert-rx" aria-hidden="true">QMEP · Dubai · UAE</span>
               </div>
             </div>
             <div className="col-lg-6">
               <div className="why-kicker rx-left" style={dl(100)}><span><T k="about.kicker" d="About QMEP" line /></span></div>
-              <h2 className="display-5 mb-3"><Words k="about.title" d="Engineering Experience. Proven Performance. Trusted Delivery." /></h2>
-              <p className="ab-lead mb-4 rx-up" style={dl(450)}><T k="about.lead" d="Established in 2007, QMEP Electromechanical and Interior Works LLC is an experienced MEP contracting company committed to delivering reliable engineering solutions for the UAE construction industry." /></p>
-              <p className="ab-text mb-3 rx-up" style={dl(550)}><T k="about.p1" d="With extensive experience in mechanical, electrical and plumbing works, we understand the technical demands, coordination requirements and delivery expectations of modern construction projects." /></p>
-              <p className="ab-text mb-4 rx-up" style={dl(650)}><T k="about.p2" d="Our approach combines engineering knowledge, professional project management, skilled resources and rigorous quality control to ensure every project is executed with precision, efficiency and accountability. At QMEP, we believe successful project delivery is built on three fundamentals: quality workmanship, timely execution and lasting client relationships." /></p>
+              <h2 className="display-5 mb-3"><Words k="about.title" d="Speed and Quality Are Our Core Strengths." /></h2>
+              <p className="ab-lead mb-4 rx-up" style={dl(450)}><T k="about.lead" d="QMEP Electromechanical and Interior Works LLC is a professional electromechanical contracting company in the United Arab Emirates, with nearly 20 years of industry experience in delivering comprehensive Mechanical, Electrical and Plumbing (MEP) and interior fit-out solutions." /></p>
+              <p className="ab-text mb-3 rx-up" style={dl(550)}><T k="about.p1" d="Established in 2007, QMEP provides integrated, turnkey MEP services covering the entire project lifecycle — from concept design, engineering and technical coordination through procurement, installation, testing, commissioning, handover and maintenance." /></p>
+              <p className="ab-text mb-4 rx-up" style={dl(650)}><T k="about.p2" d="Our strength lies in our experienced engineering team, skilled workforce and dedicated professionals who combine technical expertise with practical construction knowledge to deliver engineered, cost-effective and quality-driven solutions within agreed timelines and budgets — supported by dependable after-sales care." /></p>
               <Link className="btn btn-primary py-3 px-5 rx-up rx-btn" style={dl(750)} to="/contact"><T k="about.btn" d="Talk to Our Team" line /></Link>
             </div>
           </div>
@@ -90,18 +110,18 @@ export function AboutPage() {
               <span className="abx-mv-icon rx-pop" style={dl(500)}><i className="fa fa-bullseye"></i></span>
               <span className="ind-kicker"><T k="about.mission.kicker" d="What drives us" line /></span>
               <h2><T k="about.mission.title" d="Our Mission" line /></h2>
-              <p><T k="about.mission.text" d="To deliver integrated MEP solutions for construction and development projects, combining engineering expertise, efficient project execution and uncompromising quality standards." /></p>
+              <p><T k="about.mission.text" d="To deliver comprehensive, technically sound and cost-effective MEP solutions through engineering expertise, efficient execution and an unwavering commitment to quality." /></p>
             </div>
             <div className="abx-mv-img rx-zoom" style={dl(200)}>
-              <Img k="about.mv.image" d={buildings} alt="Dubai buildings" />
-              <span className="abx-mv-tag"><T k="about.mv.tag" d="Dubai · UAE" line /></span>
+              <Img k="about.mv.image" d={dubaiHospitalAsset.url} alt="Dubai Hospital Oncology Center MEP project" />
+              <span className="abx-mv-tag"><T k="about.mv.tag" d="Est. 2007 · Dubai, UAE" line /></span>
             </div>
             <div className="abx-mv-card rx-right" style={dl(400)}>
               <span className="abx-mv-word" aria-hidden="true">Vision</span>
               <span className="abx-mv-icon rx-pop" style={dl(900)}><i className="fa fa-eye"></i></span>
               <span className="ind-kicker"><T k="about.vision.kicker" d="Where we're going" line /></span>
               <h2><T k="about.vision.title" d="Our Vision" line /></h2>
-              <p><T k="about.vision.text" d="To be the MEP contractor of choice in the UAE, known for quality workmanship, timely execution and lasting client relationships." /></p>
+              <p><T k="about.vision.text" d="To be the MEP Contractor of Choice, recognized across the UAE and the Gulf region for engineering excellence, quality workmanship, reliable project delivery and lasting client relationships." /></p>
             </div>
           </div>
         </div>
@@ -137,8 +157,8 @@ export function AboutPage() {
               <div className="abx-sticky">
                 <span className="ind-kicker rx-left" style={dl(0)}><T k="about.values.kicker" d="Core Values" line /></span>
                 <h2 className="sd-title"><Words k="about.values.title" d="What Guides Every Project" /></h2>
-                <p className="rx-up" style={dl(400)}><T k="about.values.lead" d="Five principles guide how we plan, execute and deliver every project." /></p>
-                <span className="abx-values-big rx-zoom" style={dl(500)} aria-hidden="true">05</span>
+                <p className="rx-up" style={dl(400)}><T k="about.values.lead" d="Six core commitments shape how we engineer, execute and support every client across the UAE." /></p>
+                <span className="abx-values-big rx-zoom" style={dl(500)} aria-hidden="true">06</span>
               </div>
             </div>
             <div className="col-lg-8">
@@ -159,12 +179,12 @@ export function AboutPage() {
         <div className="container">
           <div className="abx-head text-center mx-auto">
             <span className="ind-kicker rx-up" style={dl(0)}><T k="about.approach.kicker" d="Our Approach" line /></span>
-            <h2 className="sd-title"><Words k="about.approach.title" d="How We Deliver Every Project" /></h2>
+            <h2 className="sd-title"><Words k="about.approach.title" d="End-to-End Project Lifecycle" /></h2>
           </div>
           <div className="abx-path">
-            {approach.map((a, i) => (
+            {processSteps.map((a, i) => (
               <div key={a.title} className="abx-step rx-up" style={dl(400 + i * 180)}>
-                <span className="abx-step-dot rx-pop" style={dl(500 + i * 180)}><i className={`fa ${a.icon}`}></i></span>
+                <span className="abx-step-dot rx-pop" style={dl(500 + i * 180)}><i className={`fa ${approachIcons[i] ?? "fa-check"}`}></i></span>
                 <span className="abx-step-num">Step {String(i + 1).padStart(2, "0")}</span>
                 <h3><T k={`about.step.${i}.title`} d={a.title} line /></h3>
                 <p className="mb-0"><T k={`about.step.${i}.text`} d={a.text} /></p>
@@ -174,15 +194,81 @@ export function AboutPage() {
         </div>
       </Reveal>
 
+      <Reveal as="section" className="band py-5 abx-org">
+        <div className="container">
+          <div className="abx-head text-center mx-auto">
+            <span className="ind-kicker rx-up" style={dl(0)}><T k="about.org.kicker" d="Company Structure" line /></span>
+            <h2 className="sd-title"><Words k="about.org.title" d="Organization Chart" /></h2>
+            <p className="rx-up mb-0" style={dl(250)}><T k="about.org.lead" d="Structured leadership spanning Projects & Operations, Engineering & BIM, Commercial & Procurement, Finance & HR, and HSE & QA/QC." /></p>
+          </div>
+          <div className="abx-org-frame rx-zoom" style={dl(300)}>
+            <button type="button" className="abx-doc-trigger" onClick={() => setPreviewDoc({ title: "QMEP Organization Chart", image: orgChartAsset.url })}>
+              <img src={orgChartAsset.url} alt="QMEP Electromechanical Works LLC Organization Chart" />
+              <span className="abx-doc-hint"><i className="fa fa-search-plus me-2"></i>Click to enlarge</span>
+            </button>
+          </div>
+        </div>
+      </Reveal>
+
+      <Reveal as="section" className="band py-5 bg-light abx-policies">
+        <div className="container">
+          <div className="abx-head text-center mx-auto">
+            <span className="ind-kicker rx-up" style={dl(0)}><T k="about.pol.kicker" d="Governance & Credentials" line /></span>
+            <h2 className="sd-title"><Words k="about.pol.title" d="Corporate Policies & Dubai Registration" /></h2>
+          </div>
+          <div className="row g-4 mb-5">
+            {policies.map((pol, i) => (
+              <div key={pol.title} className="col-lg-4 rx-up" style={dl(200 + i * 120)}>
+                <article className="abx-pol-card h-100">
+                  <button type="button" className="abx-pol-thumb" onClick={() => setPreviewDoc({ title: pol.title, image: pol.image })}>
+                    <img src={pol.image} alt={`${pol.title} — QMEP Electromechanical Works LLC`} />
+                    <span><i className="fa fa-expand me-1"></i>View Policy</span>
+                  </button>
+                  <div className="abx-pol-body">
+                    <h3><T k={`about.pol.${i}.title`} d={pol.title} line /></h3>
+                    <p className="abx-pol-motto">“{pol.motto}”</p>
+                    <p className="mb-0">{pol.summary}</p>
+                  </div>
+                </article>
+              </div>
+            ))}
+          </div>
+          <div className="abx-cred rx-up" style={dl(450)}>
+            <div className="row g-4 align-items-start">
+              <div className="col-lg-5">
+                <span className="ind-kicker"><T k="about.cred.kicker" d="Dubai DED & Chamber Verified" line /></span>
+                <h3 className="mt-2 mb-3">{company.legalName}</h3>
+                <dl className="abx-cred-list">
+                  <div><dt>DED Commercial License</dt><dd>{company.licenseNo}</dd></div>
+                  <div><dt>Commercial Register No.</dt><dd>{company.registerNo}</dd></div>
+                  <div><dt>Dubai Chamber (DCCI)</dt><dd>{company.dcciNo}</dd></div>
+                  <div><dt>D&amp;B D-U-N-S® No.</dt><dd>{company.dunsNo}</dd></div>
+                  <div><dt>Established / Registered</dt><dd>09/07/2007 (Valid through 08/07/2027)</dd></div>
+                  <div><dt>Registered Office</dt><dd>{company.address}</dd></div>
+                </dl>
+              </div>
+              <div className="col-lg-7">
+                <h4 className="mb-3">Active Licensed Activities</h4>
+                <ul className="abx-act-list">
+                  {licensedActivities.map((act) => (
+                    <li key={act}><i className="fa fa-check-circle text-primary me-2"></i>{act}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Reveal>
+
       <Reveal className="abx-clients">
         <div className="container">
           <div className="abx-clients-box rx-up" style={dl(0)}>
             <div>
-              <span className="ind-kicker rx-left" style={dl(150)}><T k="about.clients.kicker" d="Who We Work With" line /></span>
-              <h2 className="sd-title mb-0"><Words k="about.clients.title" d="From residential developments to complex building infrastructure" /></h2>
+              <span className="ind-kicker rx-left" style={dl(150)}><T k="about.clients.kicker" d="Sectors We Serve" line /></span>
+              <h2 className="sd-title mb-0"><Words k="about.clients.title" d="Integrated MEP & interior solutions across every sector" /></h2>
             </div>
             <div className="abx-chips">
-              {clients.map((cl, i) => <span key={cl} className="rx-pop" style={dl(400 + i * 70)}><i className="fa fa-check"></i><T k={`about.client.${i}`} d={cl} line /></span>)}
+              {sectors.map((cl, i) => <span key={cl} className="rx-pop" style={dl(400 + i * 70)}><i className="fa fa-check"></i><T k={`about.client.${i}`} d={cl} line /></span>)}
             </div>
           </div>
         </div>
@@ -194,7 +280,7 @@ export function AboutPage() {
           <div className="abx-commit-inner">
             <i className="fa fa-quote-left abx-quote rx-pop" style={dl(0)}></i>
             <span className="ind-kicker rx-up" style={dl(150)}><T k="about.commit.kicker" d="Our Commitment" line /></span>
-            <p className="abx-commit-text rx-rise" style={dl(300)}><T k="about.commit.text" d="Quality is not simply a final inspection at QMEP; it is an integral part of every stage of project delivery. Quality in Every Detail." /></p>
+            <p className="abx-commit-text rx-rise" style={dl(300)}><T k="about.commit.text" d="Delivering integrated engineering and interior solutions through quality workmanship, technical excellence, efficient project execution and a commitment to client satisfaction." /></p>
             <div className="d-flex flex-wrap gap-2 justify-content-center rx-up" style={dl(550)}>
               <Link className="btn btn-primary py-3 px-5" to="/contact"><T k="about.commit.btn1" d="Talk to Our Team" line /></Link>
               <Link className="btn ft-ghost py-3 px-5" to="/services"><T k="about.commit.btn2" d="Explore Services" line /></Link>
@@ -202,6 +288,18 @@ export function AboutPage() {
           </div>
         </div>
       </Reveal>
+
+      {previewDoc && (
+        <div className="pj-modal-backdrop" role="dialog" aria-modal="true" aria-label={previewDoc.title} onClick={() => setPreviewDoc(null)}>
+          <div className="abx-doc-modal" onClick={(e) => e.stopPropagation()}>
+            <button type="button" className="pj-modal-close" aria-label="Close document preview" onClick={() => setPreviewDoc(null)}>
+              <i className="fa fa-times"></i>
+            </button>
+            <h4>{previewDoc.title}</h4>
+            <img src={previewDoc.image} alt={previewDoc.title} />
+          </div>
+        </div>
+      )}
     </>
   );
 }

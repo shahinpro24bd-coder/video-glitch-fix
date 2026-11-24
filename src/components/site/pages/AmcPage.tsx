@@ -6,21 +6,21 @@ import { Reveal, dl } from "@/components/site/Reveal";
 import { T } from "@/lib/editable";
 
 const plans = [
-  { icon: "fa-home", name: "Residential AMC", for: "Villas and residential properties.", items: ["Scheduled AC maintenance", "Plumbing system checks", "Electrical inspections", "Preventive maintenance recommendations"] },
-  { icon: "fa-store", name: "Commercial AMC", for: "Offices, retail spaces, and commercial properties.", items: ["Planned HVAC servicing", "Electrical system inspections", "Plumbing maintenance", "Maintenance reporting"] },
-  { icon: "fa-city", name: "Comprehensive MEP AMC", for: "Properties requiring coordinated maintenance across multiple systems.", items: ["Agreed HVAC maintenance", "Electrical and plumbing inspections", "Scheduled preventive visits", "Defined reporting and service procedures"] },
+  { icon: "fa-shield-alt", name: "Defects Liability Period (DLP)", for: "Newly handed-over residential, commercial and hospitality developments.", items: ["Technical assistance throughout contractual DLP", "Systematic snagging & defect rectification", "Authority clearance & documentation support", "Warranty coordination & performance checks"] },
+  { icon: "fa-tools", name: "Operation & Maintenance (O&M)", for: "Active commercial, healthcare, retail and residential facilities.", items: ["Preventive & corrective MEP maintenance", "HVAC, electrical & plumbing equipment servicing", "System optimization & energy efficiency checks", "Dedicated technical support & service logs"] },
+  { icon: "fa-file-contract", name: "Annual Maintenance Contracts (AMC)", for: "Properties requiring year-round reliability, safety and asset longevity.", items: ["Tailored scheduled preventive maintenance programmes", "HVAC, electrical, plumbing, fire & ELV servicing", "Routine inspections, fault diagnosis & reporting", "Reliable after-sales support across the UAE"] },
 ];
 
 export function AmcPage() {
   return (
     <>
-      <PageHeader k="amc" title="AMC Packages" crumb="AMC Packages" image={amcImgAsset.url} />
+      <PageHeader k="amc" title="DLP, O&M & AMC Services" crumb="AMC Packages" image={amcImgAsset.url} />
       <Reveal as="div" className="band py-5 amcx">
         <span className="ab-gridbg" aria-hidden="true" />
         <div className="container position-relative">
-          <SectionTitle k="amc.intro" kicker="Annual Maintenance Contracts" title="Planned Maintenance For Long-Term Property Care" />
+          <SectionTitle k="amc.intro" kicker="Post-Handover & Maintenance" title="DLP, Operation & Maintenance and Tailored AMC Programmes" />
           <p className="text-center mx-auto mb-5 rx-up" style={dl(400, { maxWidth: 800 })}>
-            <T k="amc.intro.text" d="A maintenance plan helps property owners organize routine inspections, schedule servicing, and address maintenance requirements in a structured way. We prepare each AMC proposal based on your property type, equipment, and service requirements." />
+            <T k="amc.intro.text" d="QMEP's commitment extends beyond project completion. We deliver Defects Liability Period (DLP) services, preventive and corrective Operation & Maintenance (O&M), and tailored Annual Maintenance Contracts (AMC) to ensure the reliability, safety, efficiency and longevity of building services installations." />
           </p>
           <div className="row g-4 pt-4">
             {plans.map((p, i) => (
@@ -42,7 +42,7 @@ export function AmcPage() {
           </div>
         </div>
       </Reveal>
-      <CtaBanner k="amc.cta" kicker="Annual Maintenance" title="Request Your AMC Proposal" text="Every property has a different maintenance requirement. Contact our team for a proposal based on your building, equipment, and required scope." button="Get an AMC Quote" />
+      <CtaBanner k="amc.cta" kicker="Dependable After-Sales Support" title="Request a Tailored AMC or O&M Proposal" text="Contact QMEP Electromechanical and Interior Works LLC for a maintenance programme tailored to your building systems, equipment and operational requirements." button="Get an AMC Quote" />
     </>
   );
 }

@@ -2,7 +2,7 @@ import { createFileRoute, Link, useRouter } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState, type MouseEvent, type JSX } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/lib/supabase";
-import { defaults, savedFaqs, savedTexts, type CmsFaq, type CmsService } from "@/lib/cms";
+import { defaults, savedFaqs, savedServices, savedTexts, type CmsFaq, type CmsService } from "@/lib/cms";
 import { EditContext } from "@/lib/editable";
 import { SiteLayout } from "@/components/site/Layout";
 import { HomeContent } from "@/components/site/HomeContent";
@@ -69,11 +69,13 @@ function HomeEditor() {
       for (const r of data ?? []) {
         if (r.key === "texts") setTexts(savedTexts(r.value));
         if (r.key === "services") {
-          const saved = r.value as CmsService[];
-          setServices(defaults.services.map((d) => {
-            const sv = saved.find((s) => s.slug === d.slug);
-            return { ...d, ...(sv ?? {}), image: sv?.image || d.image, items: sv?.items?.length ? [...sv.items] : [...d.items] };
-          }));
+          const saved = savedServices(r.value);
+          if (saved) {
+            setServices(defaults.services.map((d) => {
+              const sv = saved.find((s) => s.slug === d.slug);
+              return { ...d, ...(sv ?? {}), image: sv?.image || d.image, items: sv?.items?.length ? [...sv.items] : [...d.items] };
+            }));
+          }
         }
         if (r.key === "faqs") { const f = savedFaqs(r.value); if (f) setFaqs(f); }
       }

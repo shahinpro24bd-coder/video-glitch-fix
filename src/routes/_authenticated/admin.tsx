@@ -2,7 +2,7 @@ import { createFileRoute, Link, useNavigate, useRouter } from "@tanstack/react-r
 import { useEffect, useState, type FormEvent } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/lib/supabase";
-import { defaults, savedFaqs, type CmsCompany, type CmsFaq, type CmsService } from "@/lib/cms";
+import { defaults, savedFaqs, savedServices, type CmsCompany, type CmsFaq, type CmsService } from "@/lib/cms";
 import type { Tables } from "@/integrations/supabase/types";
 import { Customers, Contracts, Jobs, Invoices, Reports } from "@/components/admin/Business";
 import { services as siteServices } from "@/lib/site";
@@ -65,8 +65,8 @@ function AdminPage() {
       for (const r of data ?? []) {
         if (r.key === "company") setCompany({ ...defaults.company, ...(r.value as object) });
         if (r.key === "services") {
-          const saved = r.value as CmsService[];
-          setServices(defaults.services.map((d) => ({ ...d, ...(saved.find((s) => s.slug === d.slug) ?? {}) })));
+          const saved = savedServices(r.value);
+          if (saved) setServices(defaults.services.map((d) => ({ ...d, ...(saved.find((s) => s.slug === d.slug) ?? {}) })));
         }
         if (r.key === "faqs") { const f = savedFaqs(r.value); if (f) setFaqs(f); }
       }
