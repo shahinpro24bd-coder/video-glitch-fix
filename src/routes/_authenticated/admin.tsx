@@ -28,6 +28,7 @@ const sitePages = [
   { key: "services", name: "Services", path: "/services", icon: "fa-tools", desc: "All services overview", edit: true },
   { key: "amc", name: "AMC", path: "/amc", icon: "fa-file-contract", desc: "Annual maintenance contracts", edit: true },
   { key: "projects", name: "Projects", path: "/projects", icon: "fa-project-diagram", desc: "Project showcase", edit: true },
+  { key: "careers", name: "Careers", path: "/careers", icon: "fa-briefcase", desc: "Open positions and career applications", edit: true },
   { key: "industries", name: "Industries", path: "/industries", icon: "fa-industry", desc: "Industries we serve", edit: true },
   { key: "contact", name: "Contact", path: "/contact", icon: "fa-envelope", desc: "Contact details and form", edit: true },
   ...siteServices.map((s) => ({ key: `service-${s.slug}`, name: s.title, path: `/services/${s.slug}`, icon: s.icon, desc: "Service detail page", edit: true })),

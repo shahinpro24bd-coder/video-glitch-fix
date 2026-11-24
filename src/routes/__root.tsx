@@ -138,7 +138,7 @@ function RootComponent() {
   const router = useRouter();
   useEffect(() => {
     // Fetch every main page's code up front so menu clicks open instantly.
-    const pages = ["/", "/about", "/services", "/projects", "/amc", "/industries", "/contact"] as const;
+    const pages = ["/", "/about", "/services", "/projects", "/careers", "/amc", "/industries", "/contact"] as const;
     const t = setTimeout(() => {
       pages.forEach((to) => router.preloadRoute({ to }).catch(() => {}));
     }, 300);

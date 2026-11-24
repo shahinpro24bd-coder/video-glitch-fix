@@ -775,12 +775,12 @@ a.qt-line[href]:hover .qt-line-arrow { background: var(--primary); color: #FFFFF
 
 .qn-more { position: relative; z-index: 1; }
 .qn-more:hover .fa-chevron-down, .qn-more:focus-within .fa-chevron-down { transform: rotate(180deg); }
-.qn-panel { position: absolute; top: calc(100% + 18px); left: 50%; width: 330px; padding: 8px;
+.qn-panel { position: absolute; top: calc(100% + 18px); right: 0; width: 330px; padding: 8px;
   background: rgba(255,255,255,.86); backdrop-filter: blur(18px) saturate(180%); -webkit-backdrop-filter: blur(18px) saturate(180%);
   border: 1px solid rgba(255,255,255,.8); border-radius: 18px; box-shadow: 0 30px 60px -24px color-mix(in oklab, var(--dark) 45%, transparent), 0 0 0 1px color-mix(in oklab, var(--dark) 6%, transparent);
-  opacity: 0; visibility: hidden; transform: translate(-50%, 10px) scale(.97); transform-origin: top center; transition: opacity .35s, transform .45s var(--qn-ease), visibility .35s; }
+  opacity: 0; visibility: hidden; transform: translateY(10px) scale(.97); transform-origin: top right; transition: opacity .35s, transform .45s var(--qn-ease), visibility .35s; }
 .qn-panel::before { content: ""; position: absolute; top: -22px; left: 0; right: 0; height: 22px; }
-.qn-more:hover .qn-panel, .qn-more:focus-within .qn-panel { opacity: 1; visibility: visible; transform: translate(-50%, 0) scale(1); }
+.qn-more:hover .qn-panel, .qn-more:focus-within .qn-panel { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
 .qn-panel-item { display: flex; align-items: center; gap: .85rem; padding: .75rem; border-radius: 12px; text-decoration: none; color: var(--dark); transition: background .3s, transform .4s var(--qn-ease), opacity .4s; }
 .qn-more .qn-panel-item { opacity: 0; transform: translateY(6px); }
 .qn-more:hover .qn-panel-item, .qn-more:focus-within .qn-panel-item { opacity: 1; transform: none; transition-delay: calc(.06s + var(--i) * .06s); }
@@ -1549,6 +1549,24 @@ small, .small { color: #5A6472; }
 /* --- Contact page map --- */
 .ctx { position: relative; overflow: hidden; }
 .ctx-map { position: relative; overflow: hidden; }
+
+/* --- Careers page --- */
+.crx { position: relative; overflow: hidden; }
+.crx-pillar { padding: 2rem; border-radius: 18px; background: #fff; border: 1px solid color-mix(in oklab, var(--dark) 8%, transparent);
+  box-shadow: 0 24px 48px -36px color-mix(in oklab, var(--dark) 45%, transparent); transition: transform .35s, box-shadow .35s, border-color .35s; }
+.crx-pillar:hover { transform: translateY(-6px); border-color: color-mix(in oklab, var(--primary) 35%, transparent); box-shadow: 0 32px 56px -34px color-mix(in oklab, var(--dark) 55%, transparent); }
+.crx-pillar-icon { width: 54px; height: 54px; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 1.15rem; border-radius: 14px;
+  background: color-mix(in oklab, var(--primary) 12%, transparent); color: var(--primary); font-size: 1.3rem; }
+.crx-job { display: flex; flex-direction: column; align-items: flex-start; padding: 2rem; border-radius: 18px; background: #fff;
+  border: 1px solid color-mix(in oklab, var(--dark) 8%, transparent); transition: transform .35s, box-shadow .35s, border-color .35s; }
+.crx-job:hover { transform: translateY(-5px); border-color: color-mix(in oklab, var(--primary) 35%, transparent); box-shadow: 0 30px 54px -36px color-mix(in oklab, var(--dark) 50%, transparent); }
+.crx-job-meta { display: flex; flex-wrap: wrap; gap: .5rem 1rem; margin-bottom: .9rem; font-size: .82rem; font-weight: 600; color: var(--primary); }
+.crx-job-title { margin-bottom: .65rem; font-size: 1.45rem; }
+.crx-job-summary { flex: 1; margin-bottom: 1.35rem; color: #5A6472; }
+.crx-apply-btn { border-radius: 10px; font-weight: 600; }
+.crx-apply-btn i { transition: transform .3s; }
+.crx-apply-btn:hover i { transform: translateX(4px); }
+.crx-apply { scroll-margin-top: 110px; }
 
 /* --- About page extras --- */
 .rx .abx-path::before { transform-origin: left; transform: scaleX(0); transition: transform 1.8s cubic-bezier(.2,.8,.2,1) .3s; animation: abxDash 1.2s linear infinite; }

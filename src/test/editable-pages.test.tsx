@@ -7,11 +7,12 @@ import { ServicesPage } from "@/components/site/pages/ServicesPage";
 import { AmcPage } from "@/components/site/pages/AmcPage";
 import { ProjectsPage } from "@/components/site/pages/ProjectsPage";
 import { IndustriesPage } from "@/components/site/pages/IndustriesPage";
+import { CareersPage } from "@/components/site/pages/CareersPage";
 import { ContactPage } from "@/components/site/pages/ContactPage";
 import { ServiceDetailPage } from "@/components/site/pages/ServiceDetailPage";
 
 const ctx = { edit: true, get: (_k: string, d: string) => d, set() {}, pick() {} };
-const pages = { AboutPage, ServicesPage, AmcPage, ProjectsPage, IndustriesPage, ContactPage, Detail: () => <ServiceDetailPage slug="mechanical" /> };
+const pages = { AboutPage, ServicesPage, AmcPage, ProjectsPage, IndustriesPage, CareersPage, ContactPage, Detail: () => <ServiceDetailPage slug="mechanical" /> };
 
 describe("page editor", () => {
   for (const [name, P] of Object.entries(pages)) {

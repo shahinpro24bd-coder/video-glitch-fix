@@ -11,6 +11,7 @@ import { ServicesPage } from "@/components/site/pages/ServicesPage";
 import { AmcPage } from "@/components/site/pages/AmcPage";
 import { ProjectsPage } from "@/components/site/pages/ProjectsPage";
 import { IndustriesPage } from "@/components/site/pages/IndustriesPage";
+import { CareersPage } from "@/components/site/pages/CareersPage";
 import { ContactPage } from "@/components/site/pages/ContactPage";
 import { ServiceDetailPage } from "@/components/site/pages/ServiceDetailPage";
 import { services as siteServices } from "@/lib/site";
@@ -22,6 +23,7 @@ const editorPages: Record<string, { name: string; path: string; render: () => JS
   services: { name: "Services", path: "/services", render: () => <ServicesPage /> },
   amc: { name: "AMC Packages", path: "/amc", render: () => <AmcPage /> },
   projects: { name: "Projects", path: "/projects", render: () => <ProjectsPage /> },
+  careers: { name: "Careers", path: "/careers", render: () => <CareersPage /> },
   industries: { name: "Industries", path: "/industries", render: () => <IndustriesPage /> },
   contact: { name: "Contact", path: "/contact", render: () => <ContactPage /> },
   ...Object.fromEntries(siteServices.map((s) => [`service-${s.slug}`, { name: s.title, path: `/services/${s.slug}`, render: () => <ServiceDetailPage slug={s.slug} /> }])),

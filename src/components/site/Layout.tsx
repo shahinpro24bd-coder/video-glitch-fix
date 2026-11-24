@@ -51,6 +51,8 @@ const navLinks = [
   { to: "/about", label: "About Us" },
   { to: "/services", label: "Services" },
   { to: "/projects", label: "Projects" },
+  { to: "/careers", label: "Careers" },
+  { to: "/contact", label: "Contact" },
 ] as const;
 
 const moreLinks = [
@@ -108,7 +110,7 @@ export function Navbar() {
   }, [open]);
 
   const moreActive = moreLinks.some((m) => pathname.startsWith(m.to));
-  const allLinks = [...navLinks, ...moreLinks, { to: "/contact", label: "Contact" } as const];
+  const allLinks = [...navLinks, ...moreLinks];
 
   return (
     <>
@@ -144,11 +146,6 @@ export function Navbar() {
                 ))}
               </div>
             </div>
-            <Link to="/contact" className="qn-link" activeProps={{ className: "qn-link is-active" }}
-              style={{ "--i": navLinks.length + 1 } as CSSProperties}
-              onMouseEnter={(e) => moveTo(e.currentTarget)} onFocus={(e) => moveTo(e.currentTarget)}>
-              Contact
-            </Link>
           </nav>
 
           <div className="qn-actions">
@@ -232,6 +229,7 @@ const quickLinks = [
   { to: "/about", label: "About Us" },
   { to: "/services", label: "Services" },
   { to: "/projects", label: "Projects" },
+  { to: "/careers", label: "Careers" },
   { to: "/amc", label: "AMC Packages" },
   { to: "/contact", label: "Contact Us" },
 ] as const;
